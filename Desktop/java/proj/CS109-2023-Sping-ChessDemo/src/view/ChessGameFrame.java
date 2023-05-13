@@ -1,8 +1,6 @@
 package view;
 
 import controller.GameController;
-import listener.PlayListener;
-import model.Chessboard;
 
 import javax.swing.*;
 import java.awt.*;

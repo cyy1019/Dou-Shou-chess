@@ -34,7 +34,9 @@ public class Chessboard {
         grid[6][0].setPiece(new ChessPiece(PlayerColor.RED, "Elephant", 8));
     }
 
-    private void initPiecesFromFile(){//读入文件后初始化棋子，是这里用序列化和反序列化吗
+    private void initPiecesFromFile(
+    ){//读入文件后初始化棋子，是这里用序列化和反序列化吗
+
 
 }
 
@@ -85,7 +87,7 @@ public class Chessboard {
         return getGridAt(point).getPiece().getOwner();
     }
 
-    public boolean isValidMove(ChessboardPoint src, ChessboardPoint dest) {//还要加上判断棋子能不能走进河里
+    public boolean isValidMove(ChessboardPoint src, ChessboardPoint dest) {//TODO：判断棋子能不能走进河里
         if (getChessPieceAt(src) == null || getChessPieceAt(dest) != null) {
             return false;//同时满足：在坐标src处的棋子不是null同时要移动的目标坐标上没有棋子
         }
@@ -107,7 +109,5 @@ public class Chessboard {
         }
         return false;
     }
-
-
 
 }

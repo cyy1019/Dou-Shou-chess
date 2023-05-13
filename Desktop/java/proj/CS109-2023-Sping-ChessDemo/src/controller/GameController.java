@@ -1,6 +1,4 @@
 package controller;
-
-
 import listener.GameListener;
 import model.Constant;
 import model.PlayerColor;
@@ -88,7 +86,7 @@ public class GameController implements GameListener {
             }
         } else if (selectedPoint.equals(point)) {//玩家在之前选择的点与本次点击选择的点相同，即点第二遍之后取消选取
             selectedPoint = null;//使之前选择的点为null
-            component.setSelected(false);//本次点击的棋子实际上没有被点击
+            component.sv                              v etSelected(false);//本次点击的棋子实际上没有被点击
             component.repaint();//重画，选取和取消
         }
         // TODO: Implement capture function，写棋子被选中后，又点另一个棋子，判断能不能捕获，再捕获
