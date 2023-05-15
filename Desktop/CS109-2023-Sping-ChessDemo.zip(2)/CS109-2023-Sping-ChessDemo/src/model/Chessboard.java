@@ -112,10 +112,12 @@ public class Chessboard {
         if (getChessPieceAt(src) == null || getChessPieceAt(dest) != null) {
             return false;//同时满足：在坐标src处的棋子不是null同时要移动的目标坐标上没有棋子
         }
-        if (ChessboardComponent.getBlueDensCell().contains(dest) && getChessPieceAt(src).getOwner().equals(PlayerColor.BLUE)) {
+        if (ChessboardComponent.getBlueDensCell().contains(dest)
+                && getChessPieceAt(src).getOwner().equals(PlayerColor.BLUE)) {
             return false;
         }
-        if (ChessboardComponent.getRedDensCell().contains(dest) && getChessPieceAt(src).getOwner().equals(PlayerColor.RED)) {
+        if (ChessboardComponent.getRedDensCell().contains(dest)
+                && getChessPieceAt(src).getOwner().equals(PlayerColor.RED)) {
             return false;
         }
         if (ChessboardComponent.getRiverCell().contains(dest)) {
@@ -148,7 +150,7 @@ public class Chessboard {
 
     public boolean isValidCapture(ChessboardPoint src, ChessboardPoint dest) {
         if (getChessPieceAt(src) == null || getChessPieceAt(dest) == null
-                ||getChessPieceOwner(src).equals(getChessPieceOwner(dest))) {//capture两个位置上的棋子都不是null
+                || getChessPieceOwner(src).equals(getChessPieceOwner(dest))) {//capture两个位置上的棋子都不是null
             return false;
         }
         if (getChessPieceAt(src).getRank() == 8 && getChessPieceAt(dest).getRank() == 1) {
@@ -161,9 +163,10 @@ public class Chessboard {
             return calculateDistance(src, dest) == 1;
         }
         if (getChessPieceAt(src).getRank() >= getChessPieceAt(dest).getRank()) {
-            if (getChessPieceAt(dest).getRank() == 1&&ChessboardComponent.getRiverCell().contains(dest)) {
+            if (getChessPieceAt(dest).getRank() == 1
+                    && ChessboardComponent.getRiverCell().contains(dest)) {
                 //the one being captured is rat and in the river
-                    return false;//cannot be captured
+                return false;//cannot be captured
             }
             return calculateDistance(src, dest) == 1;
         }
@@ -177,6 +180,7 @@ public class Chessboard {
     public int getNumberOfRed() {
         return numberOfRed;
     }
+
     public PlayerColor getCurrentSide() {
         if (stepSet.size() % 2 == 1) {
             return PlayerColor.RED;
