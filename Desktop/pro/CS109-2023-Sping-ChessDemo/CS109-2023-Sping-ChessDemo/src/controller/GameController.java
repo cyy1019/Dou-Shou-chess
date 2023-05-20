@@ -2,17 +2,17 @@ package controller;
 
 
 import listener.GameListener;
-import model.*;
-import view.*;
-import view.Component;
+import model.Chessboard;
+import model.ChessboardPoint;
+import model.PlayerColor;
+import model.Step;
+import view.CellComponent;
+import view.ChessComponent;
+import view.ChessGameFrame;
+import view.ChessboardComponent;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Controller is the connection between model and view,
@@ -152,9 +152,9 @@ public class GameController implements GameListener {
             view.hidePossibleMove();
             view.setPossibleMovePoint(new ArrayList<>());
             model.moveChessPiece(selectedPoint, point);
-            view.setChessComponentAtGrid(point, view.removeChessComponentAtGrid(selectedPoint));//只在内存里改变了棋子的位置
+            view.setChessComponentAtGrid(point, view.removeChessComponentAtGrid(selectedPoint));//只在前端内存里改变了棋子的位置
             Step step = new Step(model.getChessPieceAt(selectedPoint),selectedPoint,point);
-            Chessboard.stepSet.add(step);
+            getModel().stepSet.add(step);
             selectedPoint = null;//重置已选中的点
             swapColor();//交换玩家
             ChessGameFrame.changeCurrentPlayer();
@@ -200,7 +200,7 @@ public class GameController implements GameListener {
                 model.captureChessPiece(selectedPoint, point);//让cell里的棋子为null后把进攻棋子挪到指定位置上
                 view.setChessComponentAtGrid(point, view.removeChessComponentAtGrid(selectedPoint));//在前端内存里移动棋子位置
                 Step step = new Step(model.getChessPieceAt(selectedPoint),model.getChessPieceAt(point),selectedPoint,point);
-                Chessboard.stepSet.add(step);
+                getModel().stepSet.add(step);
                 selectedPoint = null;//重置已选中的点
                 swapColor();//交换玩家
                 ChessGameFrame.changeCurrentPlayer();
@@ -222,6 +222,7 @@ public class GameController implements GameListener {
         view.repaint();
         gameRound--;
     }
+
 
 
 

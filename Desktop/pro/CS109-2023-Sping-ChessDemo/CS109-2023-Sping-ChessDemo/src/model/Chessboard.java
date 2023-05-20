@@ -13,12 +13,9 @@ import java.util.List;
  * The Chessboard has 9*7 cells, and each cell has a position for chess
  */
 public class Chessboard {
-    public static List<Step> stepSet = new ArrayList<>();//TODO：stepset不能static，要改，用了的方法也要改
+    public  List<Step> stepSet = new ArrayList<>();//TODO：stepset不能static，要改，用了的方法也要改
     public PlayerColor currentSide;
     public Cell[][] grid;
-    //grid是用来放cell的，
-    //要改？？？
-    //创建一个方法initialpiecesfromfile，把数组里的数字变成棋子（？用什么方式存储棋盘）
     public int numberOfBlue = 8;
     public int numberOfRed = 8;
 
@@ -85,7 +82,7 @@ public class Chessboard {
         return chessPiece;
     }//传入point，移除同时返回被移除的棋子，移除同时返回！！！
 
-    private void setChessPiece(ChessboardPoint point, ChessPiece chessPiece) {
+    public void setChessPiece(ChessboardPoint point, ChessPiece chessPiece) {
         getGridAt(point).setPiece(chessPiece);
     }
 
@@ -114,6 +111,10 @@ public class Chessboard {
     public  Cell[][] getGrid() {
         return grid;
     }//返回在棋盘格上的槽
+
+    public void setGrid(Cell[][] grid) {
+        this.grid = grid;
+    }
 
     public PlayerColor getChessPieceOwner(ChessboardPoint point) {
         return getGridAt(point).getPiece().getOwner();
@@ -193,12 +194,18 @@ public class Chessboard {
     }
 
     public static PlayerColor getCurrentSide() {
-        if (ChessGameFrame.getGameController().getGameRound() % 2 == 1) {
+        if (ChessGameFrame.getGameController().getModel().stepSet.size() %2 == 1) {
             return PlayerColor.RED;
         }
         return PlayerColor.BLUE;
     }
 
+    public List<Step> getStepSet() {
+        return stepSet;
+    }
 
+    public void setStepSet(List<Step> stepSet) {
+        this.stepSet = stepSet;
+    }
 }
 

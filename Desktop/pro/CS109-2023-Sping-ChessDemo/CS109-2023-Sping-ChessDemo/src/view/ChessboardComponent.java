@@ -18,8 +18,9 @@ import static model.Constant.CHESSBOARD_ROW_SIZE;
  * This class represents the checkerboard component object on the panel
  */
 public class ChessboardComponent extends JComponent {
+    private ChessComponent component;
     private final CellComponent[][] gridComponents = new CellComponent[CHESSBOARD_ROW_SIZE.getNum()][CHESSBOARD_COL_SIZE.getNum()];
-    private final int CHESS_SIZE;
+    private  final int CHESS_SIZE;
     private static final Set<ChessboardPoint> riverCell = new HashSet<>();//可序列化的，chessboardpoint的set
     private static final Set<ChessboardPoint> redTrapCell = new HashSet<>();
     private static final Set<ChessboardPoint> blueTrapCell = new HashSet<>();
@@ -211,7 +212,7 @@ public class ChessboardComponent extends JComponent {
 
     }
 
-    public void removeAllComponent() {
+    public void removeAllComponent() {//把所有棋子组件移除
         for (int i = 0; i < CHESSBOARD_ROW_SIZE.getNum(); i++) {
             for (int j = 0; j < CHESSBOARD_COL_SIZE.getNum(); j++) {
                 ChessboardPoint point = new ChessboardPoint(i, j);
@@ -231,7 +232,7 @@ public class ChessboardComponent extends JComponent {
         this.gameController = gameController;
     }
 
-    public void setChessComponentAtGrid(ChessboardPoint point, Component chess) {//添加棋子
+    public void setChessComponentAtGrid(ChessboardPoint point, Component chess) {//在point位置的cell组件里添加棋子
         getGridComponentAt(point).add(chess);
     }
 
@@ -254,7 +255,7 @@ public class ChessboardComponent extends JComponent {
         }
     }
 
-    private CellComponent getGridComponentAt(ChessboardPoint point) {
+    public CellComponent getGridComponentAt(ChessboardPoint point) {//返回cell组件
         return gridComponents[point.getRow()][point.getCol()];
     }
 
@@ -321,5 +322,13 @@ public class ChessboardComponent extends JComponent {
 
     public static Set<ChessboardPoint> getRedTrapCell() {
         return redTrapCell;
+    }
+
+    public CellComponent[][] getGridComponents() {
+        return gridComponents;
+    }
+
+    public int getCHESS_SIZE() {
+        return CHESS_SIZE;
     }
 }

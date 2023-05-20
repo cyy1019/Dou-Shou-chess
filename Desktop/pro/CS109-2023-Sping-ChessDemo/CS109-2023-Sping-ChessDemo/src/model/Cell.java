@@ -1,8 +1,7 @@
 package model;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serial;
+import java.io.Serializable;
 
 /**
  * This class describe the slot for Chess in Chessboard

@@ -3,8 +3,9 @@ package view;
 import model.PlayerColor;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class ChessComponent extends Component {
+public class ChessComponent extends Component implements Serializable {
     private PlayerColor owner;
 
     private boolean selected;//有没有被选中
